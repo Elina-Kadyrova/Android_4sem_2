@@ -1,6 +1,6 @@
 package com.itis.android_4sem_2.data.api
 
-import com.itis.android_4sem_2.data.api.mapper.RecipeMapper
+import com.itis.android_4sem_2.data.api.mapper.RecipeMapperImpl
 import com.itis.android_4sem_2.data.api.response.RecipeInfoResponse
 import com.itis.android_4sem_2.data.api.response.RecipeRandomResponse
 import com.itis.android_4sem_2.data.api.response.RecipeResponse
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class RecipeRepositoryImpl @Inject constructor(
     private val api: Api,
-    private val mapper: RecipeMapper,
+    private val mapper: RecipeMapperImpl,
 ) : RecipeRepository {
 
     override fun getRecipeByTitle(recipe: String): Single<RecipeResponse> = api.getRecipeByTitle(recipe)
