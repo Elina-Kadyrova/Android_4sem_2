@@ -6,6 +6,8 @@ import com.itis.android_4sem_2.di.qualifier.ApiKeyInterceptor
 import com.itis.android_4sem_2.di.qualifier.LoggingInterceptor
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,9 +17,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val BASE_URL = "https://api.spoonacular.com/recipes/"
 private const val API_KEY = "bf5b4bd9110549c5a98693d2c5d47702"
-private const val QUERY_API_KEY = "https://api.spoonacular.com/recipes"
 
 @Module
+@InstallIn(SingletonComponent::class)
 class NetModule {
 
     @Provides
@@ -25,7 +27,6 @@ class NetModule {
     fun apiKeyInterceptor(): Interceptor = Interceptor { chain ->
         val original = chain.request()
         val newURL = original.url.newBuilder()
-            .addQueryParameter(QUERY_API_KEY, API_KEY)
             .build()
 
         chain.proceed(
