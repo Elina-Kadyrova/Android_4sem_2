@@ -7,8 +7,8 @@ data class Ingredient (
     val aisle: String,
     @SerializedName("amount")
     val amount: Double,
-    @SerializedName("consitency")
-    val consitency: String,
+    @SerializedName("consistency")
+    val consistency: String,
     @SerializedName("id")
     val id: Int,
     @SerializedName("image")

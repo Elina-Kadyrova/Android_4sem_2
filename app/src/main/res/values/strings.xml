@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RecipeApp</string>
+    <string name="title">title</string>
+    <string name="amount">amount</string>
+    <string name="ready_in_minutes">%1$s minutes</string>
+    <string name="health_points">%1$s points</string>
 </resources>

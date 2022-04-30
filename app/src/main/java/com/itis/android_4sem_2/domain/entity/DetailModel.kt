@@ -5,8 +5,8 @@ data class DetailModel(
     val title: String,
     val image: String,
     val imageType: String,
-    val calories: Int,
     val readyInMinutes: Int,
     val aggregateLikes: Int,
+    val healthScore: Double,
     val extendedIngredients: List<IngredientModel>
 )
