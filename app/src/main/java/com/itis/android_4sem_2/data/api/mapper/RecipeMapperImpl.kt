@@ -1,57 +1,50 @@
 package com.itis.android_4sem_2.data.api.mapper
 
 import com.itis.android_4sem_2.data.api.response.*
+import com.itis.android_4sem_2.domain.entity.DetailModel
+import com.itis.android_4sem_2.domain.entity.IngredientModel
+import com.itis.android_4sem_2.domain.entity.ListModel
 import javax.inject.Inject
 
 class RecipeMapperImpl @Inject constructor(): RecipeMapper {
 
-    override fun mapRecipeResponse(response: RecipeResponse) = RecipeResponse(
-        number = response.number,
-        offset = response.offset,
-        results = response.results,
-        totalResults = response.totalResults
+    override fun mapRecipeResponse(response: RecipeResponse): ListModel = ListModel(
+        id = response.results.id,
+        title = response.results.title,
+        image = response.results.image,
+        imageType = response.results.imageType,
     )
 
-    override fun mapRecipeInfoResponse(response: RecipeInfoResponse) = RecipeInfoResponse(
+    override fun mapRecipeInfoResponse(response: RecipeInfoResponse) = DetailModel(
         id = response.id,
         title = response.title,
         image = response.image,
         imageType = response.imageType,
-        servings = response.servings,
         readyInMinutes = response.readyInMinutes,
-        license = response.license,
-        sourceName = response.sourceName,
-        sourceUrl = response.sourceUrl,
-        spoonacularSourceUrl = response.spoonacularSourceUrl,
         aggregateLikes = response.aggregateLikes,
         healthScore = response.healthScore,
-        spoonacularScore = response.spoonacularScore,
-        pricePerServing = response.pricePerServing,
-        analyzedInstructions = response.analyzedInstructions,
-        cheap = response.cheap,
-        creditsText = response.creditsText,
-        cuisines = response.cuisines,
-        dairyFree = response.dairyFree,
-        diets = response.diets,
-        gaps = response.gaps,
-        glutenFree = response.glutenFree,
-        instructions = response.instructions,
-        ketogenic = response.ketogenic,
-        lowFodmap = response.lowFodmap,
-        occasions = response.occasions,
-        sustainable = response.sustainable,
-        vegan = response.vegan,
-        vegetarian = response.vegetarian,
-        veryHealthy = response.veryHealthy,
-        veryPopular = response.veryPopular,
-        whole30 = response.whole30,
-        weightWatcherSmartPoints = response.weightWatcherSmartPoints,
-        dishTypes = response.dishTypes,
-        extendedIngredients = response.extendedIngredients,
-        winePairing = response.winePairing,
+        extendedIngredients = mapIngredientInfo(response.extendedIngredients)
     )
 
-    override fun recipeRandomResponse(response: RecipeRandomResponse) = RecipeRandomResponse(
-        recipes = response.recipes
+    private fun mapIngredientInfo(response: List<Ingredient>) : List<IngredientModel> {
+        val list = ArrayList<IngredientModel>()
+        for(item in response){
+            list.add(
+                IngredientModel(
+                    name = item.name,
+                    original = item.original,
+                    amount = item.amount,
+                    unit = item.unit,
+                    consitency = item.consitency,
+                    image = item.image))
+        }
+        return list
+    }
+
+    override fun recipeRandomResponse(response: RecipeRandomResponse) = ListModel(
+        id = response.recipes.id,
+        title = response.recipes.title,
+        image = response.recipes.image,
+        imageType = response.recipes.imageType,
     )
 }

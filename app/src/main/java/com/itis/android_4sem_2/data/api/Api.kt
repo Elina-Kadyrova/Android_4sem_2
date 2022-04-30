@@ -10,13 +10,13 @@ import retrofit2.http.Query
 
 interface Api {
 
-    @GET("complexSearch?number=30")
+    @GET("complexSearch?number=5")
     fun getRecipeByTitle(@Query("query") query: String): Single<RecipeResponse>
 
     @GET("{id}/information?&includeNutrition=false")
     fun getRecipeById(@Path("id") id: Int) : Single<RecipeInfoResponse>
 
-    @GET("random?number=30")
+    @GET("random?number=5")
     fun getRandomRecipes() : Single<RecipeRandomResponse>
 }
 //examples

@@ -1,6 +1,6 @@
 package com.itis.android_4sem_2.domain.usecase
 
-import com.itis.android_4sem_2.data.api.response.RecipeInfoResponse
+import com.itis.android_4sem_2.domain.entity.DetailModel
 import com.itis.android_4sem_2.domain.repository.RecipeRepository
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -12,6 +12,6 @@ class GetRecipeByIdUseCase @Inject constructor(
 
     operator fun invoke(
         id: Int
-    ): Single<RecipeInfoResponse> = recipeRepository.getRecipeById(id)
+    ): Single<DetailModel> = recipeRepository.getRecipeById(id)
         .subscribeOn(Schedulers.io())
 }
