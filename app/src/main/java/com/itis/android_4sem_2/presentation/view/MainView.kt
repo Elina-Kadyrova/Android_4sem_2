@@ -8,7 +8,7 @@ import moxy.viewstate.strategy.alias.Skip
 
 @AddToEndSingle
 interface MainView : MvpView {
-    fun showList(listModel: List<ListModel>)
+    fun showListRandom(listModel: List<ListModel>)
     fun showLoading()
     fun hideLoading()
     @Skip

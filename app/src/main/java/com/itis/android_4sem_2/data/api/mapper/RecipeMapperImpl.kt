@@ -35,7 +35,7 @@ class RecipeMapperImpl @Inject constructor(): RecipeMapper {
                     original = item.original,
                     amount = item.amount,
                     unit = item.unit,
-                    consitency = item.consitency,
+                    consitency = item.consistency,
                     image = item.image))
         }
         return list

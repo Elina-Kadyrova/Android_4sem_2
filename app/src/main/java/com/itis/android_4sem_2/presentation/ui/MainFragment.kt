@@ -6,8 +6,6 @@ import android.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.itis.android_4sem_2.R
 import com.itis.android_4sem_2.databinding.MainFragmentBinding
@@ -39,7 +37,8 @@ class MainFragment : MvpAppCompatFragment(R.layout.main_fragment), MainView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = MainFragmentBinding.bind(view)
-        presenter.loadListFirst()
+        initRecyclerView()
+        presenter.showListRandom()
         initSearchView()
     }
 
@@ -57,11 +56,14 @@ class MainFragment : MvpAppCompatFragment(R.layout.main_fragment), MainView {
         })
     }
 
-    override fun showList(listModel: List<ListModel>) {
-        recipeAdapter = RecipeAdapter(converter) {
-            openDetailsScreen(it)
-        }
+    override fun showListRandom(listModel: List<ListModel>) {
         recipeAdapter.submitList(listModel.toMutableList())
+    }
+
+    private fun initRecyclerView(){
+        recipeAdapter = RecipeAdapter(converter) { id ->
+            openDetailsScreen(id)
+        }
         binding?.rvList?.apply {
             adapter = recipeAdapter
         }

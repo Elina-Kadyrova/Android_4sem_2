@@ -30,7 +30,7 @@ class MainFragmentPresenter @Inject constructor(
         super.onDestroy()
     }
 
-    fun loadListFirst() {
+    fun showListRandom() {
         disposables += getRandomRecipeUseCase.invoke()
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
@@ -39,9 +39,10 @@ class MainFragmentPresenter @Inject constructor(
                 viewState.hideLoading()
             }
             .subscribeBy(onSuccess = {
-                viewState.showList(listOf(it))
+                viewState.showListRandom(listOf(it))
             }, onError = { error ->
                 viewState.showError(error)
+                error.stackTrace.forEach { println(it) }
             })
     }
 
@@ -54,7 +55,7 @@ class MainFragmentPresenter @Inject constructor(
                 viewState.hideLoading()
             }
             .subscribeBy(onSuccess = {
-                viewState.showList(listOf(it))
+                viewState.showListRandom(listOf(it))
             }, onError = { error ->
                 viewState.showError(error)
             })

@@ -11,7 +11,7 @@ class IngredientHolder(
 : RecyclerView.ViewHolder(itemView)
 {
     private val title: TextView = itemView.findViewById(R.id.tv_itemRecipeTitle)
-    private val amount: TextView = itemView.findViewById(R.id.item_amount)
+    private val amount: TextView = itemView.findViewById(R.id.tv_temAmount)
 
     fun bind(ingredientModel: IngredientModel) {
         title.text = ingredientModel.name
